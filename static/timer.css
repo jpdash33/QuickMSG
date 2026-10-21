@@ -1,0 +1,59 @@
+.message-timer {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 9px;
+    padding: 6px 10px;
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.55);
+    color: #cbd5e1;
+    font-size: 11px;
+    line-height: 1;
+    transition: background 220ms ease, border-color 220ms ease, color 220ms ease;
+}
+
+.message-timer i {
+    color: #67e8f9;
+    font-size: 12px;
+}
+
+.message-timer strong {
+    color: #f8fafc;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.06em;
+    font-size: 12px;
+}
+
+.message-timer.timer-idle {
+    display: none;
+}
+
+.message-timer.timer-warning {
+    border-color: rgba(245, 158, 11, 0.55);
+    background: rgba(120, 53, 15, 0.28);
+    color: #fde68a;
+}
+
+.message-timer.timer-warning i,
+.message-timer.timer-warning strong {
+    color: #fbbf24;
+}
+
+.message-timer.timer-expired {
+    border-color: rgba(248, 113, 113, 0.4);
+    background: rgba(127, 29, 29, 0.22);
+    color: #fecaca;
+}
+
+.message-timer.timer-expired i,
+.message-timer.timer-expired strong {
+    color: #f87171;
+}
+
+@media (max-width: 520px) {
+    .message-timer {
+        margin-top: 7px;
+        font-size: 10px;
+    }
+}

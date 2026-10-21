@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pinggo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'timer.css') }}">
+    <link rel="icon" type="png/image" href="{{ url_for('static', filename = 'icon.png') }}">
+
+
+    <!-- Modern font and icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="navbar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-comments"></i>
+                </div>
+
+                <div class="brand-text">
+                    <h1>Pinggo<span>.</span></h1>
+                    <p>Messages that move with you.</p>
+                    <!-- Temporary message countdown -->
+                    <div class="message-timer" id="message-timer" aria-live="polite">
+                        <i class="fa-regular fa-clock"></i>
+                        <span id="timer-label">Message expires in</span>
+                        <strong id="timer-display">02:00</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secure-badge">
+                <span class="status-dot"></span>
+                Online
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <section class="welcome">
+                <span class="eyebrow">QUICK MESSAGING PLATFORM</span>
+                <h2>Communication, <span>simplified.</span></h2>
+                <p>No Login, No Account just share your message through passcode</p>
+            </section>
+
+            <div class="messenger-grid">
+
+                <!-- Sender Section -->
+                <section class="panel sender-panel">
+                    <div class="panel-header">
+                        <div class="panel-icon sender-icon">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </div>
+
+                        <div>
+                            <h3>Sender</h3>
+                            <p>Create and share a message</p>
+                        </div>
+
+                        <span class="role-tag sender-tag">SEND</span>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="sender-message">YOUR MESSAGE</label>
+                        <textarea id="sender-message" placeholder="Write your message here..."
+                            maxlength="2000"></textarea>
+                        <div class="field-footer">
+                            <span><i class="fa-regular fa-pen-to-square"></i> Compose message</span>
+                            <span>Max 2000 characters</span>
+                        </div>
+                    </div>
+
+                    <div class="passcode-box">
+                        <div class="passcode-heading">
+                            <div>
+                                <label>YOUR ACCESS CODE</label>
+                                <p>Share this code with your receiver</p>
+                            </div>
+                            <i class="fa-solid fa-shield-halved code-shield"></i>
+                        </div>
+
+                        <div class="passcode-display">
+                            <span class="code-char" id="passcode"> </span>
+
+                            <!-- <button class="copy-btn" type="button" title="Copy passcode">
+                                <i class="fa-regular fa-copy"></i>
+                                Copy
+                            </button> -->
+                        </div>
+
+                    </div>
+
+                    <button class="action-button sender-button" onclick="generate_code()">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Generate Code
+                        <i class="fa-solid fa-arrow-right button-arrow"></i>
+                    </button>
+
+                    <p class="panel-footnote">
+                        <i class="fa-solid fa-lock"></i>
+                        Your message, your control.
+                    </p>
+                </section>
+
+                <!-- Receiver Section -->
+                <section class="panel receiver-panel">
+                    <div class="panel-header">
+                        <div class="panel-icon receiver-icon">
+                            <i class="fa-solid fa-inbox"></i>
+                        </div>
+
+                        <div>
+                            <h3>Receiver</h3>
+                            <p>Retrieve a shared message</p>
+                        </div>
+
+                        <span class="role-tag receiver-tag">RECEIVE</span>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="receiver-code">SIX-CHARACTER ACCESS CODE</label>
+
+                        <div class="code-input-wrapper">
+                            <i class="fa-solid fa-key"></i>
+                            <input id="receiver-code" type="text" placeholder="Enter code (e.g. A7K2M9)" maxlength="6"
+                                autocomplete="off" spellcheck="false">
+                        </div>
+
+                        <p class="input-hint">
+                            <i class="fa-solid fa-circle-info"></i>
+                            Enter the code provided by the sender.
+                        </p>
+                    </div>
+
+                    <div class="field-group received-group">
+                        <label for="received-message">RECEIVED MESSAGE</label>
+                        <textarea id="received-message" placeholder="Your retrieved message will appear here..."
+                            readonly></textarea>
+                        <div class="field-footer">
+                            <span><i class="fa-regular fa-envelope-open"></i> Message inbox</span>
+                            <span>Read only</span>
+                        </div>
+                    </div>
+
+                    <button class="action-button receiver-button" onclick="receive_msg()">
+                        <i class="fa-solid fa-unlock-keyhole"></i>
+                        Retrieve Message
+                        <i class="fa-solid fa-arrow-right button-arrow"></i>
+                    </button>
+
+                    <p class="panel-footnote">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Ready when you are.
+                    </p>
+                </section>
+
+            </div>
+
+        </main>
+    </div>
+
+
+    <script src="{{ url_for('static', filename = 'send.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'receive.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'timer.js') }}"></script>
+
+</body>
+</html>
